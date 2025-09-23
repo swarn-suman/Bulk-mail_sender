@@ -23,4 +23,4 @@ router.get("/:userId", async (req, res) => {
   res.json(recipients);
 });
 
-export default router;
+module.exports = router

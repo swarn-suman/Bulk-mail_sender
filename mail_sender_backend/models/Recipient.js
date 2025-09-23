@@ -9,4 +9,4 @@ const recipientSchema = new mongoose.Schema({
   position: String
 }, { timestamps: true });
 
-export default mongoose.model("Recipient", recipientSchema);
+module.exports = mongoose.model("Recipient", recipientSchema);

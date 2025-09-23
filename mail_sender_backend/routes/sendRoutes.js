@@ -41,10 +41,10 @@ router.post("/", async (req, res) => {
       status: "sent"
     }).save();
 
-    res.json({ msg: "✅ Emails sent successfully!" });
+    res.json({ msg: "Emails sent successfully!" });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
 });
 
-export default router;
+module.exports = router

@@ -8,4 +8,4 @@ const historySchema = new mongoose.Schema({
   status: String
 }, { timestamps: true });
 
-export default mongoose.model("History", historySchema);
+module.exports = mongoose.model("History", historySchema);

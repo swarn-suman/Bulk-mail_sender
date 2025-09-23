@@ -7,4 +7,4 @@ const templateSchema = new mongoose.Schema({
   body: String
 }, { timestamps: true });
 
-export default mongoose.model("Template", templateSchema);
+module.exports = mongoose.model("Template", templateSchema);
