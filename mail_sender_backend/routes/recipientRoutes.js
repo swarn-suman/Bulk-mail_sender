@@ -1,26 +1,59 @@
 const express = require("express");
-const Template = require("../models/Template");
+const multer = require("multer");
+const csv = require("csv-parser");
+const fs = require("fs");
 const Recipient = require("../models/Recipient");
-const History = require("../models/History");
-const transporter = require("../config/mailer");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
+const upload = multer({ dest: "uploads/" });
 
-// Upload recipients
-router.post("/upload", async (req, res) => {
+// Upload CSV of recipients
+router.post("/upload", auth, upload.single("file"), async (req, res) => {
   try {
-    const recipients = req.body; // expects array of { name, email, company, position }
-    await Recipient.insertMany(recipients);
-    res.json({ msg: "Recipients uploaded successfully" });
+    // Safety check: make sure user is authenticated
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ error: "User not authenticated" });
+    }
+
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+
+    const results = [];
+    fs.createReadStream(req.file.path)
+      .pipe(csv())
+      .on("data", (data) => {
+        // Only process rows with an email
+        if (data.email) {
+          results.push({
+            userId: req.user.id,       // link to authenticated user
+            name: data.name || "",
+            email: data.email,
+            company: data.company || "",
+            position: data.position || ""
+          });
+        }
+      })
+      .on("end", async () => {
+        if (results.length === 0) {
+          fs.unlinkSync(req.file.path); // cleanup
+          return res.status(400).json({ error: "No valid recipients found in CSV" });
+        }
+
+        // Save recipients to MongoDB
+        await Recipient.insertMany(results);
+        fs.unlinkSync(req.file.path); // cleanup temp file
+
+        console.log(`✅ ${results.length} recipients uploaded for user ${req.user.id}`);
+        res.json({ message: "Recipients uploaded successfully", count: results.length });
+      })
+      .on("error", (err) => {
+        console.error("❌ CSV parse error:", err);
+        res.status(500).json({ error: "Failed to parse CSV" });
+      });
   } catch (err) {
-    res.status(500).json({ msg: err.message });
+    console.error("❌ Upload error:", err);
+    res.status(500).json({ error: "Failed to upload recipients" });
   }
 });
 
-// Get recipients
-router.get("/:userId", async (req, res) => {
-  const recipients = await Recipient.find({ userId: req.params.userId });
-  res.json(recipients);
-});
-
-module.exports = router
+module.exports = router;
