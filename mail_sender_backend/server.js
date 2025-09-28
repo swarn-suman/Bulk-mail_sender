@@ -17,6 +17,9 @@ const authRoutes = require("./routes/authRoutes");
 const templateRoutes = require("./routes/templateRoutes");
 const recipientRoutes = require("./routes/recipientRoutes");
 const sendRoutes = require("./routes/sendRoutes");
+const uploadResume = require("./routes/uploadResume");
+
+
 
 app.use(express.json());
 app.use(cors());
@@ -28,6 +31,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/templates", templateRoutes);
 app.use("/api/recipients", recipientRoutes);
 app.use("/api/send", sendRoutes);
+app.use("/api/upload", uploadResume);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
