@@ -13,8 +13,19 @@ router.post("/", async (req, res) => {
   try {
     const { templateId, recipientIds, userId } = req.body;
 
+    console.log("📩 Incoming Request Body:", req.body);
+
     const template = await Template.findById(templateId);
+    if (!template) {
+      return res.status(404).json({ msg: "Template not found" });
+    }
+
     const recipients = await Recipient.find({ _id: { $in: recipientIds } });
+    console.log("👥 Recipients Found:", recipients);
+
+    if (!recipients.length) {
+      return res.status(400).json({ msg: "No recipients found" });
+    }
 
     for (const r of recipients) {
       const subject = template.subject
@@ -26,25 +37,30 @@ router.post("/", async (req, res) => {
         .replace("{{company}}", r.company || "")
         .replace("{{position}}", r.position || "");
 
-      await transporter.sendMail({
+      console.log(`📤 Sending to ${r.email}...`);
+
+      const info = await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: r.email,
         subject,
-        text: body
+        text: body,
       });
+
+      console.log(`✅ Sent to ${r.email}: ${info.response}`);
     }
 
     await new History({
       userId,
       templateId,
-      recipients: recipients.map(r => r.email),
-      status: "sent"
+      recipients: recipients.map((r) => r.email),
+      status: "sent",
     }).save();
 
     res.json({ msg: "Emails sent successfully!" });
   } catch (err) {
+    console.error("❌ Error in send route:", err);
     res.status(500).json({ msg: err.message });
   }
 });
 
-module.exports = router
+module.exports = router;
