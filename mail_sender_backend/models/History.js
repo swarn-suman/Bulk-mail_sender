@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 
-
 const historySchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  templateId: { type: mongoose.Schema.Types.ObjectId, ref: "Template" },
-  recipients: [String], // list of email addresses
-  status: String
-}, { timestamps: true });
+  templateId: { type: mongoose.Schema.Types.ObjectId, ref: "Template", required: true },
+  recipients: [String],
+  status: { type: String, default: "sent" },
+}, { timestamps: true }); // ✅ adds createdAt & updatedAt
 
 module.exports = mongoose.model("History", historySchema);
