@@ -1,4 +1,4 @@
-# 📬 Bulk Email Sender Web App
+# 📬 Bulk Mail Sender Web App
 
 A modern, full-stack **Bulk Email Sender** web application that allows users to create email templates, upload recipient lists via CSV, attach resumes, and send personalized bulk emails.  
 It also maintains a **history of sent emails**, showing the subject, recipients, and status.
