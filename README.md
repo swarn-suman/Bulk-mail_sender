@@ -1,4 +1,4 @@
-# Bulk Email Sender (Node.js + Express)
+#  Bulk Email Sender (Node.js + Express)
 
 A modern and scalable **bulk email sending platform** with support for **CSV-based bulk sending, templates, attachments, and detailed history logging**.  
 Perfect for newsletters, marketing campaigns, and personalized notifications.  
@@ -9,30 +9,30 @@ Built with **Node.js**, **Express**, **MongoDB**, and **Nodemailer**.
 
 ##  Key Features
 
-- ** Flexible Email Composition**
+- **⚙️ Flexible Email Composition**
   - Upload `.html` or `.txt` templates and reuse them.
   - Draft emails directly in the UI editor.
   - Store and manage templates in MongoDB.
 
-- ** Recipient Modes**
+- **📧 Recipient Modes**
   - **Bulk Sending**: Upload `.csv` file with an `email` column.
   - **Single Recipient**: Send quick one-off or test emails.
 
-- ** Personalization**
+- **🎨 Personalization**
   - Use CSV fields as placeholders (e.g., `$name`, `$company`) in subject and body.
 
-- ** Attachments**
+- **📎 Attachments**
   - Attach one or more files using **Multer**.
 
-- ** History & Logs**
+- **📊 History & Logs**
   - Every campaign is logged in MongoDB (`History` model).
   - Track sent, failed, and skipped emails with timestamps.
 
-- ** Secure Configuration**
+- **🔐 Secure Configuration**
   - Store SMTP credentials and DB connection in `.env`.
   - Supports Gmail, Outlook, or any SMTP server.
 
-- ** Responsive UI**
+- **💡 Responsive UI**
   - Built with modern frontend libraries (Bootstrap/Custom CSS).
   - Real-time status updates for ongoing email campaigns.
 
@@ -70,4 +70,3 @@ npm install
 
 # Create .env file
 cp .env.example .env
-
