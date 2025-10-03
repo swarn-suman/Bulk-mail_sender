@@ -8,7 +8,7 @@ Built with **React.js**, **Node.js/Express**, **MongoDB**, and **Nodemailer**.
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/swarn-suman/bulk-email-sender/main/screenshot.png" alt="Screenshot of App" style="border-radius: 10px; max-width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://raw.githubusercontent.com/swarn-suman/bulk-email-sender/main/screenshot1.png" alt="Screenshot of App" style="border-radius: 10px; max-width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </p>
 
 ---
