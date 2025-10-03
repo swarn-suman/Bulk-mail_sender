@@ -8,8 +8,12 @@ Built with **React.js**, **Node.js/Express**, **MongoDB**, and **Nodemailer**.
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/swarn-suman/Bulk-mail_sender/refs/heads/main/Screenshot 1.png" alt="Live Screenshot of App" style="border-radius: 10px; max-width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://raw.githubusercontent.com/swarn-suman/Bulk-mail_sender/refs/heads/main/Screenshot 1.png" alt="Screenshot 1" width="45%" style="border-radius: 10px; margin: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://raw.githubusercontent.com/swarn-suman/Bulk-mail_sender/refs/heads/main/Screenshot 2.png" alt="Screenshot 2" width="45%" style="border-radius: 10px; margin: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"><br>
+  <img src="https://raw.githubusercontent.com/swarn-suman/Bulk-mail_sender/refs/heads/main/Screenshot 3.png" alt="Screenshot 3" width="45%" style="border-radius: 10px; margin: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://raw.githubusercontent.com/swarn-suman/Bulk-mail_sender/refs/heads/main/Screenshot 4.png" alt="Screenshot 4" width="45%" style="border-radius: 10px; margin: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </p>
+
 
 ---
 
